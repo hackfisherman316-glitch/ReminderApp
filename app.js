@@ -35,6 +35,10 @@ function saveReminder() {
   });
 }
 
+function testClick() {
+  alert("Button works!");
+}
+
 setInterval(checkReminders, 60000);
 
 function checkReminders() {
