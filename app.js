@@ -11,25 +11,23 @@ function setQuickReminder(hours) {
 function saveReminder() {
   alert("Triggered");
 
-  const text = document.getElementById("text").value;
+  if (!db) {
+    alert("❌ Firebase not loaded");
+    return;
+  }
 
-  if (!text || !selectedTime) {
-    alert("Missing input or time not selected");
+  if (!selectedTime) {
+    alert("Select time first");
     return;
   }
 
   db.collection("reminders").add({
-    text: text,
+    text: document.getElementById("text").value,
     remindAt: selectedTime,
-    done: false,
-    createdAt: new Date()
+    done: false
   })
-  .then(() => {
-    alert("✅ Saved to Firebase!");
-  })
-  .catch(err => {
-    alert("❌ Error: " + err.message);
-  });
+  .then(() => alert("✅ Saved!"))
+  .catch(err => alert("❌ " + err.message));
 }
 
 setInterval(checkReminders, 60000);
