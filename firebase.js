@@ -1,5 +1,4 @@
-
-// Your web app's Firebase configuration
+// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyCXYCTE7zxq0NGMqG2Sg0pqajNlILhvzpM",
   authDomain: "reminder-app-505de.firebaseapp.com",
@@ -12,10 +11,12 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-const db = firebase.firestore();
+// 🔥 IMPORTANT: make db GLOBAL
+window.db = firebase.firestore();
 
-// Anonymous login
+// Auth (optional but recommended)
 firebase.auth().signInAnonymously()
-  .then(() => console.log("Logged in anonymously"))
-  .catch(err => console.error(err));
-</script>
+  .then(() => console.log("✅ Logged in"))
+  .catch(err => console.error("Auth error:", err));
+
+console.log("🔥 Firebase initialized");
