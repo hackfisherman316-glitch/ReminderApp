@@ -37,6 +37,9 @@ function saveReminder() {
 
 function testClick() {
   alert("Button works!");
+  const text = document.getElementById("text").value;
+
+  console.log("Text:", text);
 }
 
 setInterval(checkReminders, 60000);
