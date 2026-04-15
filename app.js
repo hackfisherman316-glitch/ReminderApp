@@ -26,3 +26,33 @@ function saveReminder() {
     document.getElementById("status").innerText = "✅ Saved!";
   });
 }
+
+setInterval(checkReminders, 60000);
+
+function checkReminders() {
+  const now = new Date();
+
+  db.collection("reminders")
+    .where("remindAt", "<=", now)
+    .where("done", "==", false)
+    .get()
+    .then(snapshot => {
+      snapshot.forEach(doc => {
+        const data = doc.data();
+
+        showNotification(data.text);
+
+        db.collection("reminders")
+          .doc(doc.id)
+          .update({ done: true });
+      });
+    });
+}
+
+function showNotification(text) {
+  if (Notification.permission === "granted") {
+    new Notification("Reminder", { body: text });
+  } else {
+    Notification.requestPermission();
+  }
+}
