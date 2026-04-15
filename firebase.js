@@ -1,7 +1,6 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -14,7 +13,12 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
+
 const db = firebase.firestore();
 
-firebase.auth().signInAnonymously();
+// Anonymous login
+firebase.auth().signInAnonymously()
+  .then(() => console.log("Logged in anonymously"))
+  .catch(err => console.error(err));
+</script>
