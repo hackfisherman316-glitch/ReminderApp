@@ -11,8 +11,11 @@ function setQuickReminder(hours) {
 function saveReminder() {
   const text = document.getElementById("text").value;
 
+  console.log("Text:", text);
+  console.log("Time:", selectedTime);
+
   if (!text || !selectedTime) {
-    alert("Please enter text and select time");
+    alert("Missing input");
     return;
   }
 
@@ -23,11 +26,12 @@ function saveReminder() {
     createdAt: new Date()
   })
   .then(() => {
+    console.log("Saved successfully");
     document.getElementById("status").innerText = "✅ Saved!";
-    console.log("Saved to Firebase");
   })
   .catch(err => {
-    console.error("Error:", err);
+    console.error("Firebase error:", err);
+    alert("Error: " + err.message);
   });
 }
 
