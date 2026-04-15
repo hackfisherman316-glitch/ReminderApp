@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reminder App</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="manifest" href="manifest.json"/>
+</head>
+<body>
+  <div class="container">
+    <h2>Set Reminder</h2>
+
+    <textarea id="text" placeholder="Paste WhatsApp message here..."></textarea>
+
+    <div class="buttons">
+      <button onclick="setQuickReminder(1)">In 1 Hour</button>
+      <button onclick="setQuickReminder(6)">Tonight</button>
+      <button onclick="setQuickReminder(24)">Tomorrow</button>
+    </div>
+
+    <button class="save" onclick="saveReminder()">Save Reminder</button>
+
+    <p id="status"></p>
+  </div>
+
+  <script src="firebase.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
