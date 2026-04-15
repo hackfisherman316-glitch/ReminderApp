@@ -24,6 +24,10 @@ function saveReminder() {
   })
   .then(() => {
     document.getElementById("status").innerText = "✅ Saved!";
+    console.log("Saved to Firebase");
+  })
+  .catch(err => {
+    console.error("Error:", err);
   });
 }
 
